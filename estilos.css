@@ -1,0 +1,248 @@
+:root {
+	--exito: #51d658;
+	--error: #d81923;
+	--info: #0cbbf0;
+	--warning: #fc8a08;
+	--exito-hover: #09c03a;
+	--error-hover: #ca2530;
+	--info-hover: #14abda;
+	--warning-hover: #fc8a08;
+	--colorbutton: #000000;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #ffffff;
+	color: #000000;
+	font-family: 'Segoe UI';
+}
+
+.contenedor {
+	width: 100%;
+	max-width: 600px;
+	margin: 80px auto;
+}
+
+.hero .contenedor-botones {
+	padding: 320px;
+	display: flex;
+	gap: 20px;
+}
+
+button {
+	position: relative;
+	margin-left: 100px;
+	padding: 15px 70px;
+	font-size: 20px;
+	background: #000;
+	border: none;
+	cursor: pointer;
+	color: #fff;
+	border-radius: 10px;
+	transition: 0.3s ease all;
+	justify-content: center;
+	text-align: center;
+}
+
+
+
+button:first-child:before,
+button:last-child:before {
+	content: '';
+	position: absolute;
+	background: inherit;
+	top: -5px;
+	right: -5px;
+	bottom: -5px;
+	left: -5px;
+	border-radius: 50px;
+	filter: blur(20px);
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+button:first-child:hover:before,
+button:last-child:hover:before {
+	opacity: 1;
+	z-index: -1;
+}
+
+button:hover {
+	z-index: 1;
+	animation: glow 8s linear infinite;
+}
+
+@keyframes glow {
+	0% {
+		background-position: 0%;
+	}
+
+	100% {
+		background-position: 400%;
+	}
+}
+
+.btn.exito {
+	background: var(--colorbutton);
+}
+
+.btn.error {
+	background: var(--colorbutton);
+}
+
+.btn.info {
+	background: var(--colorbutton);
+}
+
+.btn.warning {
+	background: var(--colorbutton);
+}
+
+/* Hover */
+.btn.exito:hover {
+	background: var(--exito-hover);
+}
+
+.btn.error:hover {
+	background: var(--error-hover);
+}
+
+.btn.info:hover {
+	background: var(--info-hover);
+}
+
+.btn.warning:hover {
+	background: var(--warning-hover);
+}
+
+.contenedor-toast {
+	position: fixed;
+	right: 40px;
+	bottom: 40px;
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 20px;
+}
+
+.toast {
+	background: #ccc;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 10px;
+	overflow: hidden;
+	animation-name: apertura;
+	animation-duration: 200ms;
+	animation-timing-function: ease-out;
+	position: relative;
+}
+
+.toast.exito {
+	background: var(--exito);
+}
+
+.toast.error {
+	background: var(--error);
+}
+
+.toast.info {
+	background: var(--info);
+}
+
+.toast.warning {
+	background: var(--warning);
+}
+
+.toast .contenido {
+	display: grid;
+	grid-template-columns: 30px auto;
+	align-items: center;
+	gap: 15px;
+	padding: 15px;
+}
+
+.toast .icono {
+	color: rgba(0, 0, 0, 0.4);
+}
+
+.toast .titulo {
+	font-size: 20px;
+	font-weight: 100;
+	margin-bottom: 4px;
+}
+
+.toast .btn-cerrar {
+	background: rgba(0, 0, 0, 0.1);
+	border: none;
+	cursor: pointer;
+	padding: 0px 5px;
+	transition: 0.3s ease all;
+}
+
+.toast .btn-cerrar:hover {
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.toast .btn-cerrar .icono {
+	width: 20px;
+	height: 20px;
+	color: #fff;
+}
+
+@keyframes apertura {
+	from {
+		transform: translateY(100px);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.toast.cerrando {
+	animation-name: cierre;
+	animation-duration: 200ms;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+@keyframes cierre {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(calc(100% + 40px));
+	}
+}
+
+.toast.autoCierre::after {
+	content: '';
+	width: 100%;
+	height: 4px;
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	bottom: 0;
+	animation-name: autoCierre;
+	animation-duration: 5s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+@keyframes autoCierre {
+	from {
+		width: 100%;
+	}
+
+	to {
+		width: 0%;
+	}
+}
